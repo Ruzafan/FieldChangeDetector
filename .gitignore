@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/FieldsChangeDetector
+/FieldsChangeDetector/bin
+/FieldsChangeDetector/BenchmarkDotNet.Artifacts
+/FieldsChangeDetector/obj
+/RoslynComparatorGenerator/bin/Release/net6.0
+/RoslynComparatorGenerator/obj
