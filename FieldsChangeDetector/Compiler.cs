@@ -1,39 +1,52 @@
-﻿using Microsoft.CSharp;
-using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.Emit;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FieldsChangeDetector
 {
     class Compiler
     {
         public Assembly CompileCode(string code)
-        {
-            var provider = new CSharpCodeProvider();
-            var parameters = new CompilerParameters
-            {
-                GenerateInMemory = true,
-                GenerateExecutable = false
-            };
+    {
 
-            CompilerResults results = provider.CompileAssemblyFromSource(parameters, code);
+            // Set up compilation Configuration
+            var tree = SyntaxFactory.ParseSyntaxTree(code.Trim());
+            var compilation = CSharpCompilation.Create("Executor.cs")
+                .WithOptions(new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary,
+                    optimizationLevel: OptimizationLevel.Release))
+                .AddSyntaxTrees(tree);
 
-            if (results.Errors.HasErrors)
+            string errorMessage = null;
+            Assembly assembly = null;
+
+            bool isFileAssembly = false;
+            Stream codeStream = null;
+            using (codeStream = new MemoryStream())
             {
-                foreach (CompilerError error in results.Errors)
+                // Actually compile the code
+                EmitResult compilationResult = null;
+                compilationResult = compilation.Emit(codeStream);
+
+                // Compilation Error handling
+                if (!compilationResult.Success)
                 {
-                    Console.WriteLine($"Error: {error.ErrorText}");
+                    var sb = new StringBuilder();
+                    foreach (var diag in compilationResult.Diagnostics)
+                    {
+                        sb.AppendLine(diag.ToString());
+                    }
+                    errorMessage = sb.ToString();
+
+
+                    return null;
                 }
-                return null;
-            }
-            else
-            {
-                return results.CompiledAssembly;
+
+                // Load
+                return Assembly.Load(((MemoryStream)codeStream).ToArray());
             }
         }
+
     }
 }

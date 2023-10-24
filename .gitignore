@@ -8,3 +8,5 @@
 /FieldsChangeDetector/obj
 /RoslynComparatorGenerator/bin/Release/net6.0
 /RoslynComparatorGenerator/obj
+/.vs/ProjectEvaluation
+/RoslynComparatorGenerator/bin/Debug
