@@ -16,7 +16,7 @@ namespace FieldsChangeDetector
 
 
             //generatedInstance = generatedAssembly.CreateInstance("RoslynComparer.ComparisonHelper");
-            RoslynComparer.ComparisonHelper.ReturnDiferentFieldsRoslyn<Device>();
+            //RoslynComparer.ComparisonHelper.ReturnDiferentFieldsRoslyn<Device>();
 
         }
 

@@ -10,3 +10,5 @@
 /RoslynComparatorGenerator/obj
 /.vs/ProjectEvaluation
 /RoslynComparatorGenerator/bin/Debug
+/Generator/bin/Debug/netstandard2.0
+/Generator/obj
