@@ -7,16 +7,8 @@ namespace FieldsChangeDetector
     [MemoryDiagnoser]
     public class DetectDiferentFieldsValues
     {
-        private dynamic generatedInstance;
         public DetectDiferentFieldsValues()
         {
-            //var generatedCode = RoslynCode.GenerateComparisonCode<Device>();
-            //Compiler compiler = new Compiler();
-            //Assembly generatedAssembly = compiler.CompileCode(generatedCode);
-
-
-            //generatedInstance = generatedAssembly.CreateInstance("RoslynComparer.ComparisonHelper");
-            //RoslynComparer.ComparisonHelper.ReturnDiferentFieldsRoslyn<Device>();
 
         }
 
@@ -69,8 +61,8 @@ namespace FieldsChangeDetector
             {
                 Name = "Test new Name"
             };
-
-            return null;// RoslynCompare.ComparisonHelper.GenerateComparisonCode<Device>(device, deviceNew);
+            device.Compare(deviceNew);
+            return null;
         }
 
 
