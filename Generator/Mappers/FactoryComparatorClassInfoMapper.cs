@@ -10,12 +10,12 @@ namespace Generator.Mappers
     {
         public ClassInfo MapClassInfo(SyntaxNode syntaxNode, SemanticModel semanticModel)
         {
-            // Find all classes with fields with an [Inject] attribute
+            // Find all classes with fields with a [Comparable] attribute
             if (syntaxNode is ClassDeclarationSyntax classDeclaration)
             {
 
                 var fields = classDeclaration.Members.OfType<FieldDeclarationSyntax>()
-                    .Where(HasInjectAttribute)
+                    .Where(HasComparableAttribute)
                     .Select(MapToFieldInfo)
                     .ToArray();
 
@@ -37,7 +37,7 @@ namespace Generator.Mappers
 
             return null;
         }
-        private bool HasInjectAttribute(FieldDeclarationSyntax fieldDeclaration)
+        private bool HasComparableAttribute(FieldDeclarationSyntax fieldDeclaration)
         {
             return fieldDeclaration.AttributeLists.HasAttribute("Comparable");
         }

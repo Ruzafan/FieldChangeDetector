@@ -14,6 +14,7 @@ namespace Generator
             foreach (var classInfo in reciever.Items)
             {
                 context.AddSource($"{classInfo.Namespace}.{classInfo.Name}.g.cs", template.GetClassSource(classInfo));
+                //context.AddSource($"{classInfo.Namespace}.Comparator.g.cs", template.GetClassSource(classInfo));
             }
         }
 

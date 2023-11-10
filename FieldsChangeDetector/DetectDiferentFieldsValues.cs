@@ -61,7 +61,8 @@ namespace FieldsChangeDetector
             {
                 Name = "Test new Name"
             };
-            device.Compare(deviceNew);
+           // device.Compare(deviceNew);
+            
             return null;
         }
 

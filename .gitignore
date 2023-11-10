@@ -12,3 +12,5 @@
 /RoslynComparatorGenerator/bin/Debug
 /Generator/bin/Debug/netstandard2.0
 /Generator/obj
+/Generator.Tests/bin/Debug/net6.0
+/Generator.Tests/obj

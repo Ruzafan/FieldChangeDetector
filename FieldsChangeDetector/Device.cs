@@ -2,7 +2,7 @@
 
 namespace FieldsChangeDetector
 {
-    public class Device
+    public partial class Device
     {
         [Comparable]
         public string Id { get; set; }
