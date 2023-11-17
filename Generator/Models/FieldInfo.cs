@@ -1,4 +1,4 @@
-﻿namespace Generator.Models
+﻿namespace ChangeDetectableCodeGenerator.Models
 {
     public class FieldInfo : IParameter
     {

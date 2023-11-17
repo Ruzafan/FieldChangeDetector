@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Generator.Models
+namespace ChangeDetectorLibrary
 {
-    public class ComparableAttribute : Attribute
+    public class ChangeDetectableAttribute : Attribute
     {
 
     }

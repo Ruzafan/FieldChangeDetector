@@ -1,6 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 
-namespace Generator.Mappers
+namespace ChangeDetectableCodeGenerator.Mappers
 {
     public interface ISyntaxMapper<TResult>
     {

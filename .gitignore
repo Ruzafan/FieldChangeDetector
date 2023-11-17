@@ -14,3 +14,5 @@
 /Generator/obj
 /Generator.Tests/bin/Debug/net6.0
 /Generator.Tests/obj
+/ChangeDetectorLibrary/bin/Debug/net6.0
+/ChangeDetectorLibrary/obj

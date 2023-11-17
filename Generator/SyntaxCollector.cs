@@ -1,8 +1,8 @@
-﻿using Generator.Mappers;
+﻿using ChangeDetectableCodeGenerator.Mappers;
 using Microsoft.CodeAnalysis;
 using System.Collections.Concurrent;
 
-namespace Generator
+namespace ChangeDetectableCodeGenerator
 {
     public class SyntaxCollector<TType> : ISyntaxContextReceiver
     {

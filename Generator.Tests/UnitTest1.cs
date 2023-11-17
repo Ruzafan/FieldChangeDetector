@@ -1,23 +1,18 @@
-using Generator.Models;
+using ChangeDetectorLibrary;
 
-namespace Generator.Tests
+namespace ChangeDetectableCodeGenerator.Tests
 {
-    public partial class ComparedObject
+    public class ComparedObject
     {
-        [Comparable]
+        [ChangeDetectable]
         public string Name { get; set; }
-        [Comparable]
+        [ChangeDetectable]
         public string Id { get; set; }
 
+
     }
-    //public static partial class ComparedObject
-    //{
-    //    public static Dictionary<string, object>  Compare<ComparedObject>(this ComparedObject obj1, ComparedObject obj2)
-    //    {
 
-    //    }
-
-    //}
+    
     public class UnitTest1
     {
         [Fact]
@@ -34,8 +29,10 @@ namespace Generator.Tests
                 Id = "2"
             };
 
-            comparedObject.Compare(comparedObject, toCompareObject);
+           var result =  comparedObject.DetectChanges(toCompareObject);
 
+            Assert.True(result.First().Key == "Id");
+            Assert.True(result.First().Value == toCompareObject.Id);
         }
     }
 }

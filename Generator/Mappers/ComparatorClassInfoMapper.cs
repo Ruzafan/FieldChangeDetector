@@ -1,21 +1,23 @@
-﻿using Generator.Models;
-using Generator.Utilities;
+﻿using ChangeDetectableCodeGenerator.Models;
+using ChangeDetectableCodeGenerator.Utilities;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Diagnostics;
 using System.Linq;
 
-namespace Generator.Mappers
+namespace ChangeDetectableCodeGenerator.Mappers
 {
-    public class FactoryComparatorClassInfoMapper : ISyntaxMapper<ClassInfo>
+    public class ChangeDetectorClassInfoMapper : ISyntaxMapper<ClassInfo>
     {
         public ClassInfo MapClassInfo(SyntaxNode syntaxNode, SemanticModel semanticModel)
         {
-            // Find all classes with fields with a [Comparable] attribute
+            // Find all classes with fields with a [ChangeDetectable] attribute
             if (syntaxNode is ClassDeclarationSyntax classDeclaration)
             {
-
-                var fields = classDeclaration.Members.OfType<FieldDeclarationSyntax>()
-                    .Where(HasComparableAttribute)
+                //if (!Debugger.IsAttached) Debugger.Launch();
+                var fields = classDeclaration.Members.Where(q=> q is PropertyDeclarationSyntax)
+                    .Cast<PropertyDeclarationSyntax>()
+                    .Where(HasChangeDetectableAttribute)
                     .Select(MapToFieldInfo)
                     .ToArray();
 
@@ -37,16 +39,16 @@ namespace Generator.Mappers
 
             return null;
         }
-        private bool HasComparableAttribute(FieldDeclarationSyntax fieldDeclaration)
+        private bool HasChangeDetectableAttribute(PropertyDeclarationSyntax fieldDeclaration)
         {
-            return fieldDeclaration.AttributeLists.HasAttribute("Comparable");
+            return fieldDeclaration.AttributeLists.HasAttribute("ChangeDetectable");
         }
-        private FieldInfo MapToFieldInfo(FieldDeclarationSyntax fieldDeclaration)
+        private FieldInfo MapToFieldInfo(PropertyDeclarationSyntax fieldDeclaration)
         {
             return new FieldInfo
             {
-                Name = fieldDeclaration.Declaration.Variables.First().Identifier.ToString(),
-                Type = fieldDeclaration.Declaration.Type.ToFullString(),
+                Name = fieldDeclaration.Identifier.ToString(),
+                Type = fieldDeclaration.Type.ToFullString(),
             };
         }
 

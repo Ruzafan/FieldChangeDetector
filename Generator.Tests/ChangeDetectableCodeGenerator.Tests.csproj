@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -22,7 +22,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Generator\Generator.csproj"
-                          OutputItemType="Analyzer" />
+    <ProjectReference Include="..\ChangeDetectorLibrary\ChangeDetectorLibrary.csproj" />
+    <ProjectReference Include="..\Generator\ChangeDetectableCodeGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 </Project>
