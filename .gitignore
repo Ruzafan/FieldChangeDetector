@@ -16,3 +16,6 @@
 /Generator.Tests/obj
 /ChangeDetectorLibrary/bin/Debug/net6.0
 /ChangeDetectorLibrary/obj
+/ChangeDetectorLibrary/bin
+/Generator/bin/Release/netstandard2.0
+/Generator.Tests/bin/Release/net6.0

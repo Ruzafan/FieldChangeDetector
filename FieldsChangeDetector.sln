@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChangeDetectableCodeGenerat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChangeDetectorLibrary", "ChangeDetectorLibrary\ChangeDetectorLibrary.csproj", "{71DEE062-F568-49EA-B186-E0D7DCA567E8}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldsChangeDetector", "FieldsChangeDetector\FieldsChangeDetector.csproj", "{9F43501A-600D-4B82-847B-49FF6462424C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{71DEE062-F568-49EA-B186-E0D7DCA567E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71DEE062-F568-49EA-B186-E0D7DCA567E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71DEE062-F568-49EA-B186-E0D7DCA567E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F43501A-600D-4B82-847B-49FF6462424C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F43501A-600D-4B82-847B-49FF6462424C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F43501A-600D-4B82-847B-49FF6462424C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F43501A-600D-4B82-847B-49FF6462424C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
