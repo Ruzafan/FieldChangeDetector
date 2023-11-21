@@ -17,9 +17,10 @@ namespace ChangeDetectableCodeGenerator.Mappers
                 //if (!Debugger.IsAttached) Debugger.Launch();
                 var fields = classDeclaration.Members.Where(q=> q is PropertyDeclarationSyntax)
                     .Cast<PropertyDeclarationSyntax>()
-                    .Where(HasChangeDetectableAttribute)
+                    .Where(q=> HasChangeDetectableAttribute(q) || HasMongoChangeDetectableAttribute(q) )
                     .Select(MapToFieldInfo)
                     .ToArray();
+                
 
                 if (fields.Any())
                 {
@@ -30,7 +31,8 @@ namespace ChangeDetectableCodeGenerator.Mappers
                         Usings = classDeclaration.GetUsingStatements().Select((us) => us.ToFullString()).ToArray(),
                         Namespace = classSymbol?.ContainingNamespace.ToString(),
                         Fields = fields.ToArray(),
-                        Name = classDeclaration.Identifier.ToString()
+                        Name = classDeclaration.Identifier.ToString(),
+                        AttributeType = fields.Any(q=>q.IsMongo) ? FieldComparatorType.Mongo : FieldComparatorType.Generic
                     };
 
                     return classInfo;
@@ -43,12 +45,21 @@ namespace ChangeDetectableCodeGenerator.Mappers
         {
             return fieldDeclaration.AttributeLists.HasAttribute("ChangeDetectable");
         }
+
+        private bool HasMongoChangeDetectableAttribute(PropertyDeclarationSyntax fieldDeclaration)
+        {
+            return fieldDeclaration.AttributeLists.HasAttribute("MongoChangeDetectable");
+        }
+
         private FieldInfo MapToFieldInfo(PropertyDeclarationSyntax fieldDeclaration)
         {
+           // if (!Debugger.IsAttached) Debugger.Launch();
             return new FieldInfo
             {
                 Name = fieldDeclaration.Identifier.ToString(),
                 Type = fieldDeclaration.Type.ToFullString(),
+                IsGeneric = HasChangeDetectableAttribute(fieldDeclaration),
+                IsMongo = HasMongoChangeDetectableAttribute(fieldDeclaration)
             };
         }
 

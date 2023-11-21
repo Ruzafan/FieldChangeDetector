@@ -10,7 +10,7 @@ namespace ChangeDetectableCodeGenerator
     {
         public void Execute(GeneratorExecutionContext context)
         {
-           // if (!Debugger.IsAttached) Debugger.Launch();
+            //if (!Debugger.IsAttached) Debugger.Launch();
             var reciever = context.SyntaxContextReceiver as SyntaxCollector<ClassInfo>;
             var template = new FieldComparatorTemplate();
             foreach (var classInfo in reciever.Items)

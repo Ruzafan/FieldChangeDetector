@@ -12,7 +12,7 @@ namespace ChangeDetectableCodeGenerator.Tests
 
     }
 
-    
+
     public class UnitTest1
     {
         [Fact]
@@ -29,7 +29,7 @@ namespace ChangeDetectableCodeGenerator.Tests
                 Id = "2"
             };
 
-           var result =  comparedObject.DetectChanges(toCompareObject);
+            var result = comparedObject.DetectChanges(toCompareObject);
 
             Assert.True(result.First().Key == "Id");
             Assert.True(result.First().Value == toCompareObject.Id);

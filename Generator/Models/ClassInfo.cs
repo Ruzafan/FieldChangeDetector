@@ -22,5 +22,7 @@
         /// Fields that need to be initialized.
         /// </summary>
         public FieldInfo[] Fields { get; set; }
+
+        public FieldComparatorType AttributeType { get; set; }
     }
 }
