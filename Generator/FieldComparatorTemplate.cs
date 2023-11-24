@@ -51,20 +51,20 @@ namespace ChangeDetectableCodeGenerator
 
         private static void AddMongoMethod(ClassInfo classInfo, StringBuilder builder)
         {
-            builder.AppendLine($"public static UpdateDefinitionBuilder<{classInfo.Name}> GetMongoUpdateDefinitionOfDifferences(this {classInfo.Name} obj1, {classInfo.Name} obj2)");
+            builder.AppendLine($"public static UpdateDefinition<{classInfo.Name}> GetMongoUpdateDefinitionOfDifferences(this {classInfo.Name} obj1, {classInfo.Name} obj2)");
             builder.AppendLine("{");
-            builder.AppendLine($"var propertyDifferences = Builders<{classInfo.Name}>.Update;");
+            builder.AppendLine($"var updateDefinition = new List<UpdateDefinition<{classInfo.Name}>>();");
             builder.AppendLine($"if (obj1 != null && obj2 != null)");
             builder.AppendLine("{");
             foreach (var parameter in classInfo.Fields)
             {
                 builder.AppendLine($"if (!object.Equals(obj1.{parameter.Name}, obj2.{parameter.Name}))");
                 builder.AppendLine("{");
-                builder.AppendLine($"propertyDifferences.Set(q => q.{parameter.Name}, obj2.{parameter.Name});");
+                builder.AppendLine($"updateDefinition.Add(Builders<{classInfo.Name}>.Update.Set(q => q.{parameter.Name}, obj2.{parameter.Name}));");
                 builder.AppendLine("}");
             }
             builder.AppendLine("}");
-            builder.AppendLine($"return propertyDifferences;");
+            builder.AppendLine($"return Builders<{classInfo.Name}>.Update.Combine(updateDefinition);");
             builder.AppendLine("}");
         }
 
